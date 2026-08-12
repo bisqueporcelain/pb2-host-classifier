@@ -2,8 +2,8 @@
 
 ## What's in this folder
 
-**Nothing in this repository is real sequence data.** The original analysis used influenza
-A PB2 sequences from the **GISAID EpiFlu** database, whose access agreement prohibits
+This repository contains no real sequence data. The original analysis used influenza
+A PB2 sequences from the GISAID EpiFlu database, whose access agreement prohibits
 redistribution. No GISAID sequences, accessions, or strain identifiers are included here.
 
 | File | What it is |
@@ -23,8 +23,7 @@ redistribution. No GISAID sequences, accessions, or strain identifiers are inclu
 | `host_type` | `human`, `avian`, or `mammal` |
 | `sequence_length` | Residue count |
 
-This exists to document the expected input format. It is not a lookup table for real
-sequences.
+It documents the expected input format only and does not contain real sequence data.
 
 ## Generating runnable data
 
@@ -34,14 +33,14 @@ To execute the notebook end to end:
 python scripts/generate_synthetic_data.py
 ```
 
-This writes `data/synthetic_pb2_sequences.fasta` — 1602 generated sequences with the same
+This writes `data/synthetic_pb2_sequences.fasta`: 1602 generated sequences with the same
 header format, length distribution, and class balance as the original dataset. Set
 `USE_SYNTHETIC_DATA = True` in the notebook config cell to use it.
 
 Host signal is planted at the residues that drive real PB2 adaptation (627, 701, and
-three others) with sub-100% penetrance, so the classifiers learn something non-trivial
-instead of sitting at chance. **Accuracy obtained this way is a smoke test of the code
-path, not a scientific result.** See the disclaimer in the main README.
+three others) with sub-100% penetrance, so the classifiers learn a genuine signal rather
+than performing at chance. Accuracy obtained this way tests the code path only and
+carries no scientific meaning; see the disclaimer in the main README.
 
 ## Using real data
 
@@ -65,6 +64,6 @@ where `HOST_0` = human, `HOST_1` = avian, `HOST_2` = mammal.
 
 ## Do not commit real data
 
-`.gitignore` excludes `*.fasta`, `*.npz`, and `metadata.csv` from this directory. If you
-download real sequences they will not be committed by accident. **Please keep it that
-way** — publishing GISAID sequences violates the access agreement.
+`.gitignore` excludes `*.fasta`, `*.npz`, and `metadata.csv` from this directory, so
+downloaded real sequences are not committed by accident. Do not override this:
+publishing GISAID sequences violates the access agreement.
