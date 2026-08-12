@@ -1,0 +1,8 @@
+n_sequences: 1602
+n_human: 534
+n_avian: 534
+n_mammal: 534
+best_model: Random Forest
+best_accuracy: 0.9096573208722741
+lr_accuracy: 0.838006230529595
+rf_accuracy: 0.9096573208722741

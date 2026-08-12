@@ -1,0 +1,80 @@
+================================================================================
+ESM-2 FINE-TUNING HOST PREDICTION PIPELINE
+================================================================================
+
+================================================================================
+LOADING SEQUENCES
+================================================================================
+
+Loaded 1602 sequences
+
+Host distribution:
+host_type
+human     534
+mammal    534
+avian     534
+Name: count, dtype: int64
+
+Sequence length statistics:
+           count        mean        std    min    25%    50%    75%    max
+host_type                                                                 
+avian      534.0  753.906367  53.462429  111.0  759.0  759.0  759.0  759.0
+human      534.0  739.764045  96.533989   32.0  759.0  759.0  759.0  760.0
+mammal     534.0  757.475655  18.988057  401.0  759.0  759.0  759.0  759.0
+
+================================================================================
+FINE-TUNING ESM-2
+================================================================================
+
+Label encoding: {np.str_('avian'): np.int64(0), np.str_('human'): np.int64(1), np.str_('mammal'): np.int64(2)}
+
+Training set: 960, Val set: 321, Test set: 321
+Downloading: "https://dl.fbaipublicfiles.com/fair-esm/models/esm2_t33_650M_UR50D.pt" to ~/.cache/torch/hub/checkpoints/esm2_t33_650M_UR50D.pt
+Downloading: "https://dl.fbaipublicfiles.com/fair-esm/regression/esm2_t33_650M_UR50D-contact-regression.pt" to ~/.cache/torch/hub/checkpoints/esm2_t33_650M_UR50D-contact-regression.pt
+Epoch [1/10], Train Loss: 0.9855, Train Acc: 0.4635, Val Acc: 0.8131
+Epoch [2/10], Train Loss: 0.5459, Train Acc: 0.8198, Val Acc: 0.8193
+Epoch [3/10], Train Loss: 0.5370, Train Acc: 0.8198, Val Acc: 0.8193
+Epoch [4/10], Train Loss: 0.5313, Train Acc: 0.8240, Val Acc: 0.8162
+Epoch [5/10], Train Loss: 0.5289, Train Acc: 0.8271, Val Acc: 0.8193
+Epoch [6/10], Train Loss: 0.5247, Train Acc: 0.8250, Val Acc: 0.8193
+Epoch [7/10], Train Loss: 0.5258, Train Acc: 0.8271, Val Acc: 0.8224
+Epoch [8/10], Train Loss: 0.5119, Train Acc: 0.8260, Val Acc: 0.8224
+Epoch [9/10], Train Loss: 0.4992, Train Acc: 0.8313, Val Acc: 0.8224
+Epoch [10/10], Train Loss: 0.4776, Train Acc: 0.8510, Val Acc: 0.8692
+
+Final Training accuracy: 0.8885
+Final Validation accuracy: 0.8692
+Final Test accuracy: 0.8910
+
+Best model: ESM-2 Fine-tuned (Acc: 0.8910)
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+  | Parameter     | Default | Description                                      |
+  |---------------|---------|--------------------------------------------------|
+  | freeze_layers | 0       | Number of early layers to freeze (0 = train all) |
+  | lr            | 1e-4    | Learning rate for AdamW optimizer                |
+  | batch_size    | 4       | Training batch size                              |
+  | num_epochs    | 10      | Number of training epochs                        |
+  | dropout       | 0.3     | Dropout rate in classifier                       |
+  | val_size      | 0.2     | Validation set proportion                        |
+  | test_size     | 0.2     | Test set proportion                              |
+  | weight_decay  | 0.01    | AdamW weight decay                               |
+
+--------------------------------------------------------------------------------
+MODEL ARCHITECTURE
+--------------------------------------------------------------------------------
+
+  - Base model: Pre-trained ESM-2
+  - Layer freezing: freeze the first 30 layers, fine tune the last 3 layers
+  - Classifier head: 2-layer MLP with dropout
+    - Input: ESM-2 embeddings
+    - Hidden: 256 units with ReLU + Dropout
+    - Output: num_classes (3 for host types)
+  - Pooling: Mean pooling over sequence representations
+
+
+
+

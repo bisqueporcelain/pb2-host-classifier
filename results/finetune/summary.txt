@@ -1,0 +1,7 @@
+n_sequences: 1602
+n_human: 534
+n_avian: 534
+n_mammal: 534
+best_model: NN Head
+best_accuracy: 0.8411214953271028
+nn_head_accuracy: 0.8411214953271028
