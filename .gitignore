@@ -12,6 +12,13 @@ results/**/metadata.csv
 *.pth
 *.ckpt
 
+# Trained classifier weights. Derived from GISAID embeddings, so they are
+# distributed only through the gated Hugging Face repo, where users must
+# accept the GISAID Terms of Use first:
+#   https://huggingface.co/bisqueporcelain/pb2-host-classifier
+# Committing them here would bypass that gate.
+*.joblib
+
 # Python
 __pycache__/
 *.py[cod]
