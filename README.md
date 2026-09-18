@@ -1,5 +1,8 @@
 # Predicting Influenza A Host Species from PB2 Sequences with ESM-2
 
+Access the model via huggingface!:
+https://huggingface.co/bisqueporcelain/pb2-host-classifier
+
 This project classifies the host of an influenza A virus as human, avian, or other mammal,
 using only the amino-acid sequence of its PB2 segment and the ESM-2 protein language
 model. A random forest over frozen ESM-2 embeddings reaches 90.97% test accuracy against a
@@ -48,7 +51,7 @@ Important information:
   `.gitignore` excludes them. The repository therefore contains no checkpoint and no
   standalone inference script. Running the project means running the notebook, which
   trains every model from scratch.
-  
+
 - **Sample-data accuracy tests the code path only.** Read the
   [data disclaimer](#data-disclaimer) before you quote any number the notebook prints.
 

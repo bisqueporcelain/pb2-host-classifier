@@ -1,6 +1,5 @@
 ---
 license: cc-by-nc-4.0
-language: english
 extra_gated_heading: "Request Access to PB2 Host Classifier"
 extra_gated_prompt: "By downloading this model you confirm that you have independently agreed to the GISAID Terms of Use and that you will use this model only for non-commercial research purposes consistent with those terms."
 ---
